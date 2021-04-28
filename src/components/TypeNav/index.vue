@@ -1696,7 +1696,9 @@
 export default {
   mounted() {
     console.log("mounted挂载了");
-    this.$store.dispatch("getCategoryList");
+    //获取数据到vuex
+    this.$store.dispatch("getCategoryList");//dispatch分发，触发的意思
+    
   },
   // computed: {
   //   //两种形式;数组写法的条件
