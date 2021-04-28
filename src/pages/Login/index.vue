@@ -1,6 +1,10 @@
 <template>
   <div>
       <span>login</span>
+      <span>login</span>
+      <span>login</span>
+      <span>login</span>
+      <span>login</span>
   </div>
 </template>
 
@@ -9,7 +13,6 @@
   }
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus">
-
+<style scoped lang="less">
  
 </style>

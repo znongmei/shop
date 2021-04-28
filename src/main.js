@@ -4,6 +4,8 @@ import router from '@/router'
 
 Vue.config.productionTip = false
 
+import {reqCategoryList} from '@/api'
+reqCategoryList()
 new Vue({
   render: h => h(App),
   router,
