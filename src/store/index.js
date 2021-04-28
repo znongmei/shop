@@ -1,0 +1,1 @@
+//vuex总的state
