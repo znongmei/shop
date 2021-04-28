@@ -11,19 +11,26 @@ import Search from '@/pages/Search'
 export default new VueRouter({
   routes:[
     {
-      path:'/home',
+      path:'/home',//主页
       component:Home,
     },
     {
-      path:'/login',
+      path:'/login',//登录页
       component:Login,
+       //meta是路由对象当中的元配置项
+       meta:{
+        isHidden:true,
+      }
     },
     {
-      path:'/register',
+      path:'/register',//注册页
       component:Register,
+      meta:{
+        isHidden:true,
+      }
     },
     {
-      path:'/search',
+      path:'/search',//搜索页
       component:Search,
     }
   ]
