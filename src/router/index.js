@@ -32,6 +32,10 @@ export default new VueRouter({
     {
       path:'/search',//搜索页
       component:Search,
+    },
+    {
+      path:'/',
+      component:Home,
     }
   ]
 })

@@ -1692,6 +1692,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 // import { mapState } from "node_modules/vuex/types";
 export default {
   mounted() {
@@ -1700,6 +1701,13 @@ export default {
     this.$store.dispatch("getCategoryList");//dispatch分发，触发的意思
     
   },
+  computed:{
+    ...mapState({
+      //必须使用对象，而返回的是state.home.categoryList,
+      categoryList:state=>state.home.categoryList,
+    })
+  }
+  //从vuex当中把数据捞到vue里面
   // computed: {
   //   //两种形式;数组写法的条件
   //   ...mapState({
