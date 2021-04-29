@@ -1,7 +1,46 @@
 <template>
   <div class="type-nav">
     <div class="container">
-      <h2 class="all">全部商品分类</h2>
+      <div @mouseleave="currentIndex=-1">
+        <h2 class="all">全部商品分类</h2>
+        <div class="sort">
+          <div class="all-sort-list2">
+            <div
+              class="item"
+              :class="{ item_to: currentIndex === index }"
+              v-for="(c1, index) in categoryList"
+              :key="c1.categoryId"
+              @mouseenter="moveInItem(index)"
+            >
+              <h3>
+                <a href="">{{ c1.categoryName }}</a>
+              </h3>
+              <div class="item-list clearfix">
+                <div class="subitem">
+                  <dl
+                    class="fore"
+                    v-for="(c2, index) in c1.categoryChild"
+                    :key="c2.categoryId"
+                  >
+                    <dt>
+                      <a href="">{{ c2.categoryName }}</a>
+                    </dt>
+                    <dd>
+                      <em
+                        v-for="(c3, index) in c2.categoryChild"
+                        :key="c3.categoryId"
+                      >
+                        <a href="">{{ c3.categoryName }}</a>
+                      </em>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <nav class="nav">
         <a href="###">服装城</a>
         <a href="###">美妆馆</a>
@@ -12,35 +51,31 @@
         <a href="###">有趣</a>
         <a href="###">秒杀</a>
       </nav>
-      <div class="sort">
-        <div class="all-sort-list2">
-          <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId">
-            <h3>
-              <a href="">{{c1.categoryName}}</a>
-            </h3>
-            <div class="item-list clearfix">
-              <div class="subitem">
-                <dl class="fore" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
-                  <dt>
-                    <a href="">{{c2.categoryName}}</a>
-                  </dt>
-                  <dd>
-                    <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
-                      <a href="">{{c3.categoryName}}</a>
-                    </em>
-                  </dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
+import throttle from "lodash/throttle";
 export default {
+  data() {
+    return {
+      currentIndex: -1,
+    };
+  },
+  methods: {
+    // moveInItem(index){
+    //    this.currentIndex = index
+    //   console.log(index)
+    //  },
+    //解决浏览器节流
+    moveInItem:throttle(function(index) {
+      this.carrentIndex=index
+      console.log(index)
+    },10,
+    {'trailing': falseS}//这是一个配置对象，也就是在他的10s前触发一次
+    )
+  },
   mounted() {
     console.log(this);
     //获取数据到vuex
@@ -50,7 +85,7 @@ export default {
   computed: {
     //两种形式;数组写法的条件
     ...mapState({
-      categoryList: state => state.home.categoryList,//这里面的的state是vuex提供的
+      categoryList: (state) => state.home.categoryList, //这里面的的state是vuex提供的
     }),
   },
 };
@@ -166,7 +201,7 @@ export default {
             }
           }
 
-          &:hover {
+          &.item_to {
             background-color: aqua;
             .item-list {
               display: block;
