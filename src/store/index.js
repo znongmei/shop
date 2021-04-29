@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 //将小的模块引入放到总的store里面
-import hemo from './home'
+import home from './home'
 import user from './user'
 //vuex四大核心概念
 const state = {
@@ -25,7 +25,7 @@ export default new Vuex.Store({
   getters,
   modules: {
     //也是一个模块化,将小的模块放到里面进行管理,也就是合并起来
-    hemo,
+    home,
     user,
 
   }
