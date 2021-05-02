@@ -64,10 +64,19 @@ export default {
       keyword:'',
     }
   },
-  name:"",
   methods: {
     ToSearch(){
-      this.$router.push('/search/'+this.keyword)//跳转到搜索页面
+      let location = {
+        name: "search",
+        params: { keyword: this.keyword || undefined},
+        // query: { keyword1: this.keyword.toUpperCase() },
+      }
+      //跳转之前一样的，也得判断之前过来有没有带query参数，有的话这次一起带上（合并参数）
+      if(this.$route.query){
+        location.query = this.$route.query
+      }
+
+      this.$router.push(location);
     }
   },
 }

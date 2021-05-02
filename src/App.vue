@@ -15,7 +15,11 @@ export default {
   components: {
     Footer,
     Header,
-  }
+  },
+  mounted() {
+    //获取数据到vuex
+    this.$store.dispatch("getCategoryList"); //dispatch分发，触发的意思
+  },
 }
 </script>
 

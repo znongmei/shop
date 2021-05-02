@@ -30,7 +30,11 @@ export default new VueRouter({
       }
     },
     {
-      path:'/search',//搜索页
+      path:'/search:keyword?',//搜索页
+      name:'search',
+      props:(route) => {
+        return {keyword:route.params.keyword,keyword1:route.query.keyword1}
+      },
       component:Search,
     },
     {
