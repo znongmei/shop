@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from '@/router'
 import store from '@/store'
 
-
+import '@/mock/mockServe'//引入mock文件
 
 Vue.config.productionTip = false
 
