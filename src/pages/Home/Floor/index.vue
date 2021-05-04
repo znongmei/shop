@@ -23,7 +23,7 @@
               <img :src="floor.imgUrl" />
             </div>
             <div class="floorBanner">
-              <div class="swiper-container" id="floor2Swiper">
+              <div class="swiper-container" ref="floorSwiper">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide" v-for="(carouse,index) in floor.carouselList" :key="carouse.id">
                     <img :src="carouse.imgUrl" />
@@ -72,8 +72,29 @@
 </template>
 
 <script type="text/ecmascript-6">
+import Swiper from 'swiper'
 export default {
-  props:['floor']
+  props:['floor'],
+  mounted() {
+    //这里可以在mounted里面进行写轮播图，是因为floor的数据已经早在home父组件已经拿到了，所以不用像banner轮播图那样
+    //去监视数据有没有过来
+     new Swiper (this.$refs.floorSwiper, {
+            // direction: 'vertical', // 垂直切换选项
+            loop: true, // 循环模式选项
+
+            // 如果需要分页器
+            pagination: {
+              el: '.swiper-pagination',
+            },
+
+            // 如果需要前进后退按钮
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+
+        })
+  },
 }
 </script>
 

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from '@/router'
 import store from '@/store'
-
+import 'swiper/css/swiper.css'//引入swiper的css样式，因为有多个轮播图要用，所以在全局里面引
 import '@/mock/mockServe'//引入mock文件
 
 Vue.config.productionTip = false
