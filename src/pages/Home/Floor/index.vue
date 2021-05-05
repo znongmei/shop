@@ -23,25 +23,8 @@
               <img :src="floor.imgUrl" />
             </div>
             <div class="floorBanner">
-              <div class="swiper-container" ref="floorSwiper">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide" v-for="(carouse,index) in floor.carouselList" :key="carouse.id">
-                    <img :src="carouse.imgUrl" />
-                  </div>
-                  <!-- <div class="swiper-slide">
-                    <img src="./images/floor-1-b02.png" />
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="./images/floor-1-b03.png" />
-                  </div> -->
-                </div>
-                <!-- 如果需要分页器 -->
-                <div class="swiper-pagination"></div>
-
-                <!-- 如果需要导航按钮 -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-              </div>
+             
+              <SlideLoop :bannerList="floor.carouselList"></SlideLoop>
             </div>
             <div class="split">
               <span class="floor-x-line"></span>
@@ -72,29 +55,54 @@
 </template>
 
 <script type="text/ecmascript-6">
-import Swiper from 'swiper'
+
 export default {
   props:['floor'],
   mounted() {
     //这里可以在mounted里面进行写轮播图，是因为floor的数据已经早在home父组件已经拿到了，所以不用像banner轮播图那样
     //去监视数据有没有过来
-     new Swiper (this.$refs.floorSwiper, {
-            // direction: 'vertical', // 垂直切换选项
-            loop: true, // 循环模式选项
+    //  new Swiper (this.$refs.floorSwiper, {
+    //         // direction: 'vertical', // 垂直切换选项
+    //         loop: true, // 循环模式选项
 
-            // 如果需要分页器
-            pagination: {
-              el: '.swiper-pagination',
-            },
+    //         // 如果需要分页器
+    //         pagination: {
+    //           el: '.swiper-pagination',
+    //         },
 
-            // 如果需要前进后退按钮
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            },
+    //         // 如果需要前进后退按钮
+    //         navigation: {
+    //           nextEl: '.swiper-button-next',
+    //           prevEl: '.swiper-button-prev',
+    //         },
 
-        })
+    //     })
   },
+  // watch:{//这里监视数据是监视不到的因为数据早就过来了，所以我们得用下面的immediate
+  //   floor:{
+  //     immediate:true,//意思是无论有没有监测到数据，都执行一次回调函数
+  //     handler(newVal,oldVal){
+  //       this.$nextTick(()=>{
+  //          new Swiper (this.$refs.floorSwiper, {
+  //           // direction: 'vertical', // 垂直切换选项
+  //           loop: true, // 循环模式选项
+
+  //           // 如果需要分页器
+  //           pagination: {
+  //             el: '.swiper-pagination',
+  //           },
+
+  //           // 如果需要前进后退按钮
+  //           navigation: {
+  //             nextEl: '.swiper-button-next',
+  //             prevEl: '.swiper-button-prev',
+  //           },
+
+  //       })
+  //       })
+  //     }
+  //   }
+  // }
 }
 </script>
 

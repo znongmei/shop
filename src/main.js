@@ -10,9 +10,10 @@ Vue.config.productionTip = false
 // import {reqCategoryList} from '@/api'
 
 //全局注册非路由组件，就是一个组件有多个地方用到
-import TypeNav from '@/components/TypeNav'//引入
+import TypeNav from '@/components/TypeNav'//引入三级菜单组件
 Vue.component('TypeNav',TypeNav)//注册，前面是名称，后面是组件
-
+import SlideLoop from '@/components/SlideLoop'//引入轮播图组件
+Vue.component('SlideLoop',SlideLoop)
 
 // reqCategoryList()
 new Vue({
