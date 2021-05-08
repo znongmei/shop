@@ -80,7 +80,7 @@
 
 <script type="text/ecmascript-6">
 import { mapState } from 'vuex'
-import Swiper from 'swiper'
+
 export default {
   data() {
     return {

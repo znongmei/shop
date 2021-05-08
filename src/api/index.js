@@ -22,4 +22,14 @@ export const reqFloorList=()=>{
   })
 }
 
+//search 接口请求函数
+export const reqSearchInfo=(searchParams)=>{
+  return request({
+    url:'/list',
+    method:'post',
+    //SearchParams是用户搜索的参数。这个参数使用户发请求的时候传递的
+    data:searchParams
+  })
+}
 
+// reqSearchInfo({})

@@ -5,6 +5,7 @@ Vue.use(Vuex)
 //将小的模块引入放到总的store里面
 import home from './home'
 import user from './user'
+import search from './search'
 //vuex四大核心概念
 const state = {
   //存储数据
@@ -27,6 +28,6 @@ export default new Vuex.Store({
     //也是一个模块化,将小的模块放到里面进行管理,也就是合并起来
     home,
     user,
-
+    search, 
   }
 })

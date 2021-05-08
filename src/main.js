@@ -7,7 +7,7 @@ import '@/mock/mockServe'//引入mock文件
 
 Vue.config.productionTip = false
 
-// import {reqCategoryList} from '@/api'
+// import '@/api'
 
 //全局注册非路由组件，就是一个组件有多个地方用到
 import TypeNav from '@/components/TypeNav'//引入三级菜单组件
