@@ -17,6 +17,9 @@ Vue.component('SlideLoop',SlideLoop)
 
 // reqCategoryList()
 new Vue({
+  beforeCreate() {
+    Vue.prototype.$bus=this//安装全局事件总线，代表任意组件都可以通过this.$bus来访问到vm的实例
+  },
   render: h => h(App),
   router,//所有组件内部可以使用this.$router, this.$route
   store,//所有的组件可以拿到this.$store

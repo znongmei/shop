@@ -4,7 +4,7 @@
       <div class="fl key brand">品牌</div>
       <div class="value logos">
         <ul class="logo-list">
-          <li v-for="(trademark,index) in trademarkList" :key="trademark.tmId">{{trademark.tmName}}</li>
+          <li v-for="(trademark,index) in trademarkList" :key="trademark.tmId" @click="searchForTrademark(trademark)">{{trademark.tmName}}</li>
         </ul>
       </div>
       <!-- <div class="ext">
@@ -17,7 +17,7 @@
       <div class="fl value">
         <ul class="type-list">
           <li v-for="(attrValue,index) in attrs.attrValueList" :key="index">
-            <a>{{attrValue}}</a>
+            <a href="javascript:;" @click="searchForProps(attrValue,attrs)">{{attrValue}}</a>
           </li>
         </ul>
       </div>
@@ -33,7 +33,17 @@ import { mapGetters } from 'vuex'
     name: 'SearchSelector',
     computed:{
       ...mapGetters(['attrsList','trademarkList'])
-    }
+    },
+    methods: {
+      //点击品牌回调
+      searchForTrademark(trademark){//searchForTrademark是我们上面点击事件定义的回调函数
+        this.$emit('searchForTrademark',trademark)//这里面的searchForTrademark是定义的的触发事件
+      },
+      //点击平台属性值回调
+      searchForProps(attrValue,attrs){
+        this.$emit('searchForProps',attrValue,attrs)
+      }
+    },
 
   }
 </script>
