@@ -203,7 +203,14 @@ export default {
           location.params = this.$route.params
         }
 
-        this.$router.push(location);
+        //判断路由跳转；如果是home跳search页用push
+        //如果是search跳search页用replace
+        if (this.$route.path !=='/home') {
+          this.$router.replace(location);
+        } else {
+           this.$router.push(location);
+        }
+       
       }
     },
     moveOutDiv() {

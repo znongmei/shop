@@ -204,18 +204,24 @@ export default {
         category2Id,
         category3Id,
         categoryName,
-      } = this.$route.query;
-      let { keyword } = this.$route.params;
+      } = this.$route.query;//拿到query数据，
+      let { keyword } = this.$route.params;//拿到params数据
 
       let searchParams = {
-        ...this.searchParams, //相当于一个浅拷贝
-        category1Id,
+        ...this.searchParams, //相当于一个浅拷贝,拷贝的是我们在data里面初始化的searchParams数据，
+        category1Id,//意思是将searchParams里面的覆盖
         category2Id,
         category3Id,
         categoryName,
         keyword,
       }; //这样可以保证searchParams，里面一定包含了我点击传递过去的搜索条件，没有就是undefined
-      this.searchParams = searchParams;
+      //做的是解决发送请求有空串的问题
+      Object.keys(searchParams).forEach(key=>{//是先将searchParams这个对象转化为数组，再利用foreach进行遍历
+        if (searchParams[key] === '') {//查看他的属性是否有值
+          delete searchParams[key]//将没有值的属性删除
+        }
+      })
+      this.searchParams = searchParams;//然我们let的searchParams的值给我们在data里面初始化的searchParams
     },
     removeCategoryName() {
       //移除三级分类列表的信息
@@ -224,14 +230,14 @@ export default {
       this.searchParams.category1Id = undefined;
       this.searchParams.categoryName = undefined;
       // this.getSearchInfo()//再次调用请求函数
-      this.$router.push({ name: "search", params: this.$route.params }); //目的是为了让路径变化
+      this.$router.replace({ name: "search", params: this.$route.params }); //目的是为了让路径变化
     },
     removeKeyword() {
       //移除关键字搜索
       this.searchParams.keyword = undefined;
       this.$bus.$emit = "clearKeyword";
       // this.getSearchInfo()//再次调用请求函数
-      this.$router.push({ name: "search", query: this.$route.query });
+      this.$router.replace({ name: "search", query: this.$route.query });
     },
     removeTrademark() {
       //删除品牌搜索条件后重新发请求
